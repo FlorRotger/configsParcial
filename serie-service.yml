@@ -1,19 +1,16 @@
 server:
-  port: 8080
+  port: 0
 
 spring:
   application:
-    name: gateway
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-      routes:
-        - id: catalogRoute
-          uri: lb://catalog-service/
-          predicates:
-            - Path=/catalog/**
+    name: serie-service
+  mongodb:
+    embedded:
+      version: 4.0.2
+  data:
+    mongodb:
+      database: test
+      port: 27017
 
 eureka:
   client:
