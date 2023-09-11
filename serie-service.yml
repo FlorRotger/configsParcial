@@ -11,6 +11,21 @@ spring:
     mongodb:
       database: test
       port: 27017
+  zipkin:
+    baseUrl: http://localhost:9411/
+    enabled: true
+    sender:
+      type: rabbit
+      enabled: true
+  sleuth:
+    enabled: true
+  rabbitmq:
+    username: guest
+    password: guest
+    host: localhost
+    port: 5672
+    sleuth:
+      enabled: true
 
 eureka:
   client:
