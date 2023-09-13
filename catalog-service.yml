@@ -4,13 +4,31 @@ server:
 spring:
   application:
     name: catalog-service
-
+  mongodb:
+    embedded:
+      version: 4.0.2
+    data:
+      mongodb:
+        database: test
+        port: 27018
+  sleuth:
+    sampler:
+      probability: 1.0
+  rabbitmq:
+    username: guest
+    password: guest
+    host: localhost
+    port: 5672
   zipkin:
     baseUrl: http://localhost:9411/
     enabled: true
-    sender:
-      type: rabbit
-      enabled: true
+
+
+queue:
+  serie:
+    name: serieQueue
+  movie:
+    name: movieQueue
 
 eureka:
   client:
