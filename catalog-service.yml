@@ -45,3 +45,43 @@ eureka:
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 10
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      students:
+        #        slidingWindowType: COUNT_BASED
+        #        slidingWindowSize: 5
+        #        failureRateThreshold: 50
+        #        waitDurationInOpenState: 15000
+        #        permittedNumberOfCallsInHalfOpenState: 3
+        #        registerHealthIndicator: true
+        #        allowHealthIndicatorToFail: false
+        #        automaticTransitionFromOpenToHalfOpenEnabled: true
+
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 5
+        failureRateThreshold: 50
+        #        tiempo de espera en milisegundos en estado abierto
+        waitDurationInOpenState: 15000
+        #        para ver si el servicio se recuperó, le voy a decir, esperá 3 llamadas para poder decir, pasalo a estado cerrado
+        permittedNumberOfCallsInHalfOpenState: 3
+        #        vamos a definir que hacemos con el estado del servicio cuando se abrio
+        #        esto esa para ver la informacion del servicio en actuator
+        registerHealthIndicator: true
+        #        aca le decimos marca el servicio como down q no lo pueda ver nadie, esta en false porque tenemos q ver
+        #         como pasamos el serv a up
+        allowHealthIndicatorToFail: false
+        automaticTransitionFromOpenToHalfOpenEnabled: true
